@@ -1,90 +1,289 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Қазақ зергерлік бұйымдары</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗергерПортал AI - Portfolio</title>
+    <style>
+        /* НЕГІЗГІ СТИЛЬДЕР */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family:'Segoe UI', sans-serif;
-    background:linear-gradient(135deg,#1f1f1f,#2d2d2d,#3a3a3a);
-    color:white;
-}
+        body {
+            background: radial-gradient(circle at top right, #1e1e2f, #0f0c29);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-header{
-    text-align:center;
-    padding:30px;
-    font-size:22px;
-    font-weight:bold;
-    color:#d4af37;
-}
+        /* НАВИГАЦИЯ */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-h1{
-    text-align:center;
-    margin-bottom:50px;
-    color:#d4af37;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
 
-.gallery{
-    display:flex;
-    justify-content:center;
-    gap:60px;
-    flex-wrap:wrap;
-}
+        .logo span { color: #7d5fff; }
 
-.card3d{
-    perspective:1000px;
-}
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-.card3d img{
-    width:400px;
-    border-radius:20px;
-    transition:transform 0.6s ease;
-    box-shadow:0 30px 60px rgba(0,0,0,0.8);
-}
+        nav a:hover { color: #7d5fff; }
 
-.card3d:hover img{
-    transform:rotateY(18deg) rotateX(8deg) scale(1.05);
-}
+        /* КОНТЕЙНЕР */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-textarea{
-    width:80%;
-    max-width:900px;
-    display:block;
-    margin:50px auto 0 auto;
-    height:170px;
-    border-radius:15px;
-    border:none;
-    padding:20px;
-    font-size:16px;
-}
+        /* КАРТОЧКАЛАР (СЕКЦИЯЛАР) */
+        .section-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
 
-</style>
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(125, 95, 255, 0.3);
+        }
+
+        .content { flex: 1.2; padding-right: 30px; }
+        .visual { flex: 0.8; display: flex; justify-content: center; }
+
+        /* СУРЕТ ОРНЫ (PLACEHOLDER) */
+        .img-box {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(45deg, #2c2c54, #474787);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ТЕКСТ СТИЛЬДЕРІ */
+        .step-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #7d5fff;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h2 { font-size: 28px; margin-bottom: 15px; font-weight: 700; }
+        p { color: #a5a5b1; margin-bottom: 20px; font-size: 15px; }
+
+        textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: #fff;
+            resize: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        textarea:focus { border-color: #7d5fff; }
+
+        /* КЕРІ БАЙЛАНЫС / EMOJI */
+        .feedback-area {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .emoji-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .emoji-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .emoji-item:hover {
+            background: rgba(125, 95, 255, 0.2);
+            border-color: #7d5fff;
+        }
+
+        .emoji-icon { font-size: 32px; display: block; margin-bottom: 10px; }
+        .emoji-text { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #a5a5b1; }
+
+        /* БАТЫРМАЛАР */
+        .btns {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 350px;
+            padding: 16px;
+            border-radius: 14px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #7d5fff;
+            color: white;
+            box-shadow: 0 10px 20px rgba(125, 95, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #0f0c29;
+        }
+
+        .btn:hover { transform: scale(1.02); opacity: 0.9; }
+
+        /* МОБИЛЬДІ НҰСҚА */
+        @media (max-width: 768px) {
+            .section-card { flex-direction: column; text-align: center; padding: 25px; }
+            .content { padding-right: 0; margin-bottom: 25px; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-💎 Қазақтың көне әшекей бұйымдары
-</header>
+    <header>
+        <div class="logo">ЗергерПортал <span>AI</span></div>
+        <nav>
+            <a href="#">Шабыт</a>
+            <a href="#">Процесс</a>
+            <a href="#">Нәтиже</a>
+            <a href="#">Кері байланыс</a>
+        </nav>
+    </header>
 
-<h1>01. Шабыт көзі мен композиция</h1>
+    <div class="container">
+        
+        <section class="section-card">
+            <div class="content">
+                <span class="step-label">01. Эскиз және Идея</span>
+                <h2>Шабыт көзі мен композиция</h2>
+                <p>Бұйымның алғашқы бейнесі қалай пайда болды? Ою-өрнек таңдауда неге сүйендіңіз?</p>
+                <textarea rows="3" placeholder="Өз ойларыңызды осында жазыңыз..."></textarea>
+            </div>
+            <div class="visual">
+                <div class="img-box">
+                    <span>📸 Фото қою</span>
+                </div>
+            </div>
+        </section>
 
-<div class="gallery">
+        <section class="section-card" style="flex-direction: row-reverse;">
+            <div class="content" style="padding-right: 0; padding-left: 30px;">
+                <span class="step-label">02. Шеберлік кезеңі</span>
+                <h2>Металмен жұмыс технологиясы</h2>
+                <p>Кесу, соғу, дәнекерлеу кезінде қандай тәсілдерді үйрендіңіз?</p>
+                <textarea rows="3" placeholder="Тәжірибеңізбен бөлісіңіз..."></textarea>
+            </div>
+            <div class="visual">
+                <div class="img-box">
+                    <span>🛠️ Фото қою</span>
+                </div>
+            </div>
+        </section>
 
-<div class="card3d">
-<img src="bracelet.png">
-</div>
+        <section class="section-card">
+            <div class="content">
+                <span class="step-label">03. Дайын бұйым</span>
+                <h2>Нәтиже мен жетістік</h2>
+                <p>Дайын өнім эскизге сәйкес келді ме? Нәтиже сізді қуантты ма?</p>
+                <textarea rows="3" placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+            </div>
+            <div class="visual">
+                <div class="img-box">
+                    <span>✨ Фото қою</span>
+                </div>
+            </div>
+        </section>
 
-<div class="card3d">
-<img src="silver.png">
-</div>
+        <section class="feedback-area">
+            <h2 style="font-style: italic;">Бүгінгі сабақ қалай өтті?</h2>
+            <div class="emoji-container">
+                <div class="emoji-item">
+                    <span class="emoji-icon">🤩</span>
+                    <span class="emoji-text">Керемет</span>
+                </div>
+                <div class="emoji-item">
+                    <span class="emoji-icon">😊</span>
+                    <span class="emoji-text">Жақсы</span>
+                </div>
+                <div class="emoji-item">
+                    <span class="emoji-icon">🤔</span>
+                    <span class="emoji-text">Орташа</span>
+                </div>
+                <div class="emoji-item">
+                    <span class="emoji-icon">🤯</span>
+                    <span class="emoji-text">Қиын</span>
+                </div>
+            </div>
 
-</div>
+            <div class="btns">
+                <button class="btn btn-primary">✨ AI РЕПОРТАЖ ЖАСАУ</button>
+                <button class="btn btn-secondary">НӘТИЖЕНІ САҚТАУ</button>
+            </div>
+        </section>
 
-<textarea placeholder="Осы бұйымдар туралы өз пікіріңізді жазыңыз..."></textarea>
+    </div>
 
 </body>
 </html>
