@@ -5,27 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЗергерПортал AI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg:#0F0F1A;
---card:#181826;
---accent:#6C5CFF;
---gold:#D4AF37;
---text:#FFFFFF;
---sub:#A0A0C0;
+--bg:#0b0b15;
+--card:#151527;
+--accent:#7b6cff;
+--gold:#d4af37;
+--text:#ffffff;
+--muted:#9aa0c3;
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Plus Jakarta Sans',sans-serif;
+font-family:'Inter',sans-serif;
 }
 
 body{
-background: radial-gradient(circle at 50% -20%, #1e1e3f 0%, #0F0F1A 60%);
+background:radial-gradient(circle at 50% -20%, #1d1d3a 0%, #0b0b15 60%);
 color:var(--text);
 padding:60px 20px;
 }
@@ -43,17 +43,14 @@ margin-bottom:50px;
 display:flex;
 align-items:center;
 gap:60px;
-border:1px solid rgba(255,255,255,0.05);
+border:1px solid rgba(123,108,255,0.2);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
 transition:.4s;
-position:relative;
-overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 25px 60px rgba(0,0,0,.7),
-0 0 30px rgba(108,92,255,.3);
-border-color:var(--accent);
+transform:translateY(-10px);
+box-shadow:0 0 60px rgba(123,108,255,0.3);
 }
 
 .content{
@@ -70,16 +67,16 @@ display:block;
 }
 
 h2{
-font-size:34px;
+font-size:36px;
 margin-bottom:25px;
 }
 
 textarea{
 width:100%;
 height:130px;
-background:#11111c;
+background:#0f0f1c;
 border:1px solid rgba(255,255,255,0.08);
-border-radius:16px;
+border-radius:18px;
 padding:18px;
 color:white;
 resize:none;
@@ -90,8 +87,10 @@ transition:.3s;
 textarea:focus{
 outline:none;
 border-color:var(--accent);
-box-shadow:0 0 20px rgba(108,92,255,.2);
+box-shadow:0 0 25px rgba(123,108,255,0.4);
 }
+
+/* 3D LOOK */
 
 .visual{
 flex:1;
@@ -101,56 +100,52 @@ align-items:center;
 height:300px;
 }
 
-/* 3D OBJECTS */
-
-.medal{
+.ring{
 width:220px;
 height:220px;
 border-radius:50%;
-background:radial-gradient(circle at 30% 30%, #FFD700, #D4AF37 60%, #8B7500);
+border:40px solid var(--gold);
 box-shadow:
 inset -15px -25px 50px rgba(0,0,0,.6),
-inset 10px 10px 40px rgba(255,255,255,.4),
 0 40px 80px rgba(0,0,0,.9);
-position:relative;
-animation:spin 10s linear infinite;
-}
-
-.medal::after{
-content:"★";
-color:white;
-font-size:70px;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-}
-
-.ring{
-width:200px;
-height:200px;
-border-radius:50%;
-border:35px solid var(--gold);
-box-shadow:
-inset -10px -20px 40px rgba(0,0,0,.6),
-0 30px 70px rgba(0,0,0,.9);
-animation:spin 12s linear infinite;
+animation:rotate 10s linear infinite;
 }
 
 .metal{
 width:180px;
 height:220px;
-background:linear-gradient(145deg,#2a2a40,#1a1a2f);
+background:linear-gradient(145deg,#2a2a40,#121224);
 border-radius:30px;
 box-shadow:
-inset -15px -20px 40px rgba(0,0,0,.7),
-inset 10px 10px 30px rgba(255,255,255,.05),
-0 40px 80px rgba(0,0,0,.8);
+inset -20px -30px 50px rgba(0,0,0,.8),
+0 40px 90px rgba(0,0,0,.9);
 animation:float 4s ease-in-out infinite;
 }
 
-@keyframes spin{
-from{transform:rotateY(0deg);}
+.medal{
+width:220px;
+height:220px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #ffd700, #d4af37 60%, #8b7500);
+box-shadow:
+inset -20px -30px 60px rgba(0,0,0,.7),
+0 50px 100px rgba(0,0,0,.9);
+position:relative;
+animation:rotate 12s linear infinite;
+}
+
+.medal::after{
+content:"★";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:80px;
+color:white;
+}
+
+@keyframes rotate{
+from{transform:rotateY(0);}
 to{transform:rotateY(360deg);}
 }
 
@@ -162,11 +157,12 @@ to{transform:rotateY(360deg);}
 /* FEEDBACK */
 
 .feedback{
-background:linear-gradient(145deg,#1b1b2e,#10101c);
+background:linear-gradient(145deg,#1c1c34,#0e0e1c);
 border-radius:40px;
 padding:70px;
 text-align:center;
-border:1px solid rgba(108,92,255,.3);
+border:1px solid rgba(123,108,255,0.4);
+box-shadow:0 0 60px rgba(0,0,0,.8);
 }
 
 .emoji-wrap{
@@ -180,7 +176,7 @@ margin:40px 0;
 width:90px;
 height:90px;
 border-radius:24px;
-background:#141425;
+background:#141428;
 border:1px solid rgba(255,255,255,.08);
 font-size:36px;
 cursor:pointer;
@@ -191,19 +187,19 @@ justify-content:center;
 }
 
 .emoji-btn:hover{
-transform:scale(1.1);
+transform:scale(1.15);
 border-color:var(--accent);
+box-shadow:0 0 25px var(--accent);
 }
 
 .emoji-btn.active{
 background:var(--accent);
-box-shadow:0 0 30px var(--accent);
-transform:scale(1.15);
+box-shadow:0 0 35px var(--accent);
 }
 
 .finish-btn{
-background:linear-gradient(90deg,var(--accent),#8C7DFF);
-padding:20px 80px;
+background:linear-gradient(90deg,var(--accent),#9a8dff);
+padding:22px 90px;
 border-radius:20px;
 border:none;
 color:white;
@@ -214,8 +210,8 @@ transition:.3s;
 }
 
 .finish-btn:hover{
-transform:translateY(-3px);
-box-shadow:0 15px 40px rgba(108,92,255,.4);
+transform:translateY(-4px);
+box-shadow:0 0 40px var(--accent);
 }
 
 @media(max-width:900px){
@@ -255,17 +251,5 @@ text-align:center;
 <div class="card">
 <div class="content">
 <span class="tag">03. Дайын бұйым</span>
-<h2>Нәтиже мен жетістік</h2>
-<textarea placeholder="Сабақ нәтижесі туралы жазыңыз..."></textarea>
-</div>
-<div class="visual">
-<div class="medal"></div>
-</div>
-</div>
-
-<div class="feedback">
-<h2>Бүгінгі сабақ қалай өтті?</h2>
-<div class="emoji-wrap">
-<button class="emoji-btn" onclick="setEmoji(this)">😍</button>
-<button class="emoji-btn" onclick="setEmoji(this)">�
+<h2>Нәтиже
 
