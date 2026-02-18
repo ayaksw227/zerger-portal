@@ -3,194 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЗергерПортал AI</title>
+<title>Қазақ зергерлік бұйымдары</title>
 
 <style>
 body{
     margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#1f1f1f,#2d2d2d,#3a3a3a);
     color:white;
 }
 
 header{
     text-align:center;
-    padding:20px;
+    padding:30px;
     font-size:22px;
     font-weight:bold;
-}
-
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:600;
-}
-
-section{
-    display:none;
-    padding:60px 10%;
-}
-
-.active{
-    display:block;
+    color:#d4af37;
 }
 
 h1{
     text-align:center;
-    margin-bottom:40px;
+    margin-bottom:50px;
+    color:#d4af37;
 }
 
-.flex{
+.gallery{
     display:flex;
-    gap:50px;
-    align-items:center;
+    justify-content:center;
+    gap:60px;
     flex-wrap:wrap;
 }
 
-.box{
-    flex:1;
-    min-width:280px;
+.card3d{
+    perspective:1000px;
+}
+
+.card3d img{
+    width:400px;
+    border-radius:20px;
+    transition:transform 0.6s ease;
+    box-shadow:0 30px 60px rgba(0,0,0,0.8);
+}
+
+.card3d:hover img{
+    transform:rotateY(18deg) rotateX(8deg) scale(1.05);
 }
 
 textarea{
-    width:100%;
-    height:150px;
+    width:80%;
+    max-width:900px;
+    display:block;
+    margin:50px auto 0 auto;
+    height:170px;
     border-radius:15px;
     border:none;
-    padding:15px;
-    font-size:14px;
+    padding:20px;
+    font-size:16px;
 }
 
-button{
-    margin-top:15px;
-    padding:12px 30px;
-    border:none;
-    border-radius:15px;
-    background:#00c6ff;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.card-container{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-}
-
-.card{
-    background:rgba(255,255,255,0.1);
-    padding:25px;
-    border-radius:20px;
-    width:160px;
-    text-align:center;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.card:hover{
-    background:#00c6ff;
-    transform:scale(1.1);
-}
-
-img{
-    width:100%;
-    max-width:350px;
-    border-radius:20px;
-}
 </style>
-
-<script>
-function showSection(id){
-    document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-}
-
-function saveComment(id){
-    let text = document.getElementById(id).value;
-    localStorage.setItem(id, text);
-    alert("Сақталды ✅");
-}
-
-function loadComments(){
-    ["idea","resultText"].forEach(id=>{
-        if(localStorage.getItem(id)){
-            document.getElementById(id).value = localStorage.getItem(id);
-        }
-    });
-}
-
-window.onload = loadComments;
-</script>
-
 </head>
+
 <body>
 
 <header>
-💎 ЗергерПортал ✨ AI  
-<br>
-<nav>
-<a href="#" onclick="showSection('home')">🏠 Басты бет</a>
-<a href="#" onclick="showSection('sketch')">🎨 Эскиз</a>
-<a href="#" onclick="showSection('result')">🏆 Нәтиже</a>
-</nav>
+💎 Қазақтың көне әшекей бұйымдары
 </header>
 
-<!-- HOME -->
-<section id="home" class="active">
-<h1>Бүгінгі сабақ қалай өтті? 😊</h1>
+<h1>01. Шабыт көзі мен композиция</h1>
 
-<div class="card-container">
-<div class="card">🤩<br>КЕРЕМЕТ</div>
-<div class="card">🙂<br>ЖАҚСЫ</div>
-<div class="card">😐<br>ОРТАША</div>
-<div class="card">😵<br>ҚИЫН</div>
-</div>
-</section>
+<div class="gallery">
 
-<!-- SKETCH -->
-<section id="sketch">
-<h1>01. Шабыт көзі мен композиция 🎨</h1>
-
-<div class="flex">
-<div class="box">
-<p>
-Идея ұлттық ою-өрнек пен заманауи стильдің үйлесімінен алынды.
-Композиция симметрия мен пропорцияға негізделді.
-</p>
-
-<textarea id="idea" placeholder="Өз пікіріңізді жазыңыз..."></textarea>
-<button onclick="saveComment('idea')">💾 Сақтау</button>
+<div class="card3d">
+<img src="bracelet.png">
 </div>
 
-<div class="box">
-<img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd">
-</div>
-</div>
-</section>
-
-<!-- RESULT -->
-<section id="result">
-<h1>03. Нәтиже мен жетістік 🏆</h1>
-
-<div class="flex">
-<div class="box">
-<p>
-Дайын бұйым эскизге сәйкес жасалды.
-Эстетика және сапа талаптары сақталды.
-</p>
-
-<textarea id="resultText" placeholder="Жетістігіңізді жазыңыз..."></textarea>
-<button onclick="saveComment('resultText')">💾 Сақтау</button>
+<div class="card3d">
+<img src="silver.png">
 </div>
 
-<div class="box">
-<img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401">
 </div>
-</div>
-</section>
+
+<textarea placeholder="Осы бұйымдар туралы өз пікіріңізді жазыңыз..."></textarea>
 
 </body>
 </html>
