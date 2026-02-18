@@ -4,106 +4,156 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЗергерПортал AI</title>
-<style>
 
+<style>
 body{
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#1d1b4f,#2e2a7a);
+    font-family:Segoe UI, sans-serif;
+    background:linear-gradient(135deg,#ff4da6,#ff99cc);
     color:white;
-    text-align:center;
 }
 
 header{
+    text-align:center;
     padding:20px;
-    font-size:20px;
+    font-size:22px;
     font-weight:bold;
 }
 
-h1{
-    margin-top:40px;
-    font-size:42px;
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.container{
+section{
+    display:none;
+    padding:50px 10%;
+}
+
+.active{
+    display:block;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.flex{
     display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-top:40px;
+    gap:40px;
+    align-items:center;
     flex-wrap:wrap;
 }
 
-.card{
-    background:#2f2c6d;
-    padding:25px;
-    border-radius:20px;
-    width:170px;
-    transition:0.3s;
-    cursor:pointer;
+.box{
+    flex:1;
+    min-width:280px;
 }
 
-.card:hover{
-    transform:translateY(-10px);
-    background:#3d39a1;
-}
-
-.emoji{
-    font-size:50px;
-}
-
-.btn{
-    margin-top:40px;
-    padding:15px 40px;
+textarea{
+    width:100%;
+    height:150px;
     border:none;
     border-radius:15px;
-    font-size:18px;
+    padding:15px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+img{
+    width:100%;
+    max-width:350px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+button{
+    margin-top:30px;
+    padding:15px 40px;
+    border:none;
+    border-radius:20px;
+    font-size:16px;
     cursor:pointer;
-}
-
-.primary{
-    background:linear-gradient(90deg,#6c63ff,#8f87ff);
-    color:white;
-}
-
-.secondary{
     background:white;
-    color:#2e2a7a;
-    margin-top:20px;
+    color:#ff1493;
+    font-weight:bold;
 }
 
+.container{
+    text-align:center;
+}
 </style>
+
+<script>
+function showSection(id){
+    document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+</script>
+
 </head>
 <body>
 
-<header>💎 ЗергерПортал ✨ AI</header>
+<header>
+💎 ЗергерПортал ✨ AI
+<br>
+<nav>
+<a href="#" onclick="showSection('home')">Басты бет</a>
+<a href="#" onclick="showSection('sketch')">Эскиз</a>
+<a href="#" onclick="showSection('result')">Нәтиже</a>
+</nav>
+</header>
 
-<h1>Бүгінгі сабақ қалай өтті?</h1>
-
+<!-- HOME -->
+<section id="home" class="active">
 <div class="container">
-    <div class="card">
-        <div class="emoji">🤩</div>
-        <p>КЕРЕМЕТ</p>
-    </div>
+<h1>Бүгінгі сабақ қалай өтті?</h1>
+<p>Өз әсеріңізді бөлісіңіз 💗</p>
+</div>
+</section>
 
-    <div class="card">
-        <div class="emoji">😊</div>
-        <p>ЖАҚСЫ</p>
-    </div>
+<!-- SKETCH -->
+<section id="sketch">
+<h1>01. Шабыт көзі мен композиция</h1>
 
-    <div class="card">
-        <div class="emoji">🤔</div>
-        <p>ОРТАША</p>
-    </div>
+<div class="flex">
+<div class="box">
+<p>
+Бұйымның алғашқы идеясы ұлттық ою-өрнек пен заманауи стильді үйлестіруден алынды.
+Композиция симметрияға негізделді.
+</p>
 
-    <div class="card">
-        <div class="emoji">😲</div>
-        <p>ҚИЫН</p>
-    </div>
+<textarea placeholder="Өз пікіріңізді жазыңыз..."></textarea>
 </div>
 
-<button class="btn primary">✨ AI РЕПОРТАЖ ЖАСАУ</button>
-<br>
-<button class="btn secondary">НӘТИЖЕНІ САҚТАУ</button>
+<div class="box">
+<img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png">
+</div>
+</div>
+</section>
+
+<!-- RESULT -->
+<section id="result">
+<h1>03. Нәтиже мен жетістік</h1>
+
+<div class="flex">
+<div class="box">
+<p>
+Дайын бұйым эскизге сәйкес жасалды.
+Пропорция және эстетика сақталды.
+</p>
+
+<textarea placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+</div>
+
+<div class="box">
+<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+</div>
+</div>
+</section>
 
 </body>
 </html>
