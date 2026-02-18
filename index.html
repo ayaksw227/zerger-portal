@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЗергерПортал AI - 4K Edition</title>
+    <title>ЗергерПортал AI - 3D Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* НЕГІЗГІ СТИЛЬДЕР */
         * {
             margin: 0;
             padding: 0;
@@ -14,129 +14,123 @@
         }
 
         body {
-            background: #0a0a14;
+            background: #05050a;
             color: #ffffff;
-            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* КОНТЕЙНЕР */
         .container {
             max-width: 1100px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 20px;
         }
 
-        /* 3D КАРТОЧКА ЭФФЕКТІСІ */
+        /* КАРТОЧКА СТИЛІ */
         .section-card {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 40px;
-            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 50px;
+            margin-bottom: 60px;
             backdrop-filter: blur(20px);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            perspective: 1000px; /* 3D тереңдік */
-        }
-
-        .section-card:hover {
-            transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
-            border-color: #7d5fff;
-            box-shadow: 0 30px 60px rgba(125, 95, 255, 0.2);
+            transition: 0.3s ease;
         }
 
         .content { flex: 1.2; padding-right: 40px; }
-        .visual { flex: 0.8; position: relative; }
+        .visual { flex: 0.8; perspective: 1000px; }
 
-        /* 4K ФОТО СТИЛІ */
-        .img-wrapper {
+        /* 3D ЖЫЛЖЫМАЛЫ ФОТО */
+        .img-3d {
             width: 100%;
-            height: 300px;
-            border-radius: 20px;
+            height: 350px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            transition: transform 0.5s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            cursor: pointer;
+            /* Бұл жерде 3D эффектісі орнайды */
+            transform-style: preserve-3d;
+            background-size: cover;
+            background-position: center;
         }
 
-        .img-wrapper img {
+        .img-3d img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .section-card:hover .img-wrapper img {
-            transform: scale(1.1); /* Фотоның ішінде қозғалуы */
+            /* Фото ішіндегі элементтердің алға шығуы үшін */
+            transform: translateZ(50px) scale(1.1);
+            transition: 0.2s;
         }
 
         /* ТЕКСТ */
-        .step-label { color: #7d5fff; font-weight: 800; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        h2 { font-size: 32px; margin-bottom: 15px; }
-        p { color: #b0b0bc; margin-bottom: 25px; }
+        .step-label { color: #7d5fff; font-weight: 800; font-size: 13px; letter-spacing: 3px; margin-bottom: 12px; display: block; }
+        h2 { font-size: 36px; margin-bottom: 20px; font-weight: 800; background: linear-gradient(to right, #fff, #7d5fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { color: #8e8e9a; margin-bottom: 30px; font-size: 16px; }
 
         textarea {
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 20px;
+            padding: 20px;
             color: #fff;
             resize: none;
+            outline: none;
+            transition: 0.3s;
         }
+        textarea:focus { border-color: #7d5fff; background: rgba(125, 95, 255, 0.05); }
 
-        /* СМАЙЛИКТЕРДІ ТАҢДАУ */
-        .feedback-area { text-align: center; margin-top: 80px; }
+        /* СМАЙЛИКТЕР */
         .emoji-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 25px;
+            margin: 50px 0;
         }
 
         .emoji-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 30px;
             cursor: pointer;
-            width: 120px;
-            transition: 0.3s;
-            border: 2px solid transparent;
+            width: 140px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Басылғандағы стиль (Active state) */
-        .emoji-item:hover, .emoji-item.selected {
-            background: rgba(125, 95, 255, 0.15);
+        .emoji-item:hover, .emoji-item.active {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(125, 95, 255, 0.2);
             border-color: #7d5fff;
-            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(125, 95, 255, 0.3);
         }
 
-        .emoji-icon { font-size: 40px; display: block; margin-bottom: 10px; }
-        .emoji-text { font-size: 12px; font-weight: 600; color: #a5a5b1; }
+        .emoji-icon { font-size: 45px; display: block; margin-bottom: 10px; }
+        .emoji-text { font-size: 12px; font-weight: 700; color: #a5a5b1; text-transform: uppercase; }
 
         /* БАТЫРМАЛАР */
+        .btn-group { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .btn {
-            display: block;
             width: 100%;
-            max-width: 400px;
-            margin: 15px auto;
-            padding: 18px;
-            border-radius: 15px;
+            max-width: 450px;
+            padding: 20px;
+            border-radius: 20px;
             border: none;
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
         }
-
-        .btn-ai { background: #7d5fff; color: white; box-shadow: 0 10px 25px rgba(125, 95, 255, 0.4); }
-        .btn-save { background: #ffffff; color: #000; }
-        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .btn-ai { background: linear-gradient(45deg, #6c5ce7, #7d5fff); color: white; }
+        .btn-save { background: #fff; color: #000; }
+        .btn:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(125, 95, 255, 0.4); }
 
         @media (max-width: 768px) {
-            .section-card { flex-direction: column; text-align: center; }
-            .content { padding-right: 0; margin-bottom: 30px; }
+            .section-card { flex-direction: column; padding: 30px; }
+            .content { padding-right: 0; margin-bottom: 40px; }
         }
     </style>
 </head>
@@ -146,86 +140,91 @@
         
         <section class="section-card">
             <div class="content">
-                <span class="step-label">01. ЭСКИЗ ЖӘНЕ ИДЕЯ</span>
-                <h2>Шабыт көзі мен композиция</h2>
-                <p>Бұйымның алғашқы бейнесі қалай пайда болды? Ою-өрнек таңдауда неге сүйендіңіз?</p>
-                <textarea rows="3" placeholder="Өз ойларыңызды осында жазыңыз..."></textarea>
+                <span class="step-label">01. ШАБЫТ</span>
+                <h2>Көне жәдігерлер сыры</h2>
+                <p>Бабалар мұрасы - біздің басты шабытымыз. Эскиз жасаудағы басты идеяңызды сипаттаңыз.</p>
+                <textarea rows="3" placeholder="Ою-өрнек мағынасы..."></textarea>
             </div>
             <div class="visual">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1610406093022-e22303080e77?auto=format&fit=crop&q=80&w=1000" alt="Antique Jewelry">
+                <div class="img-3d" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="https://images.unsplash.com/photo-1635336109312-0399767bb2e1?q=80&w=1000&auto=format&fit=crop" alt="Antique Gold">
                 </div>
             </div>
         </section>
 
         <section class="section-card" style="flex-direction: row-reverse;">
             <div class="content" style="padding-right: 0; padding-left: 40px;">
-                <span class="step-label">02. ШЕБЕРЛІК КЕЗЕҢІ</span>
-                <h2>Металмен жұмыс технологиясы</h2>
-                <p>Кесу, соғу, дәнекерлеу кезінде қандай тәсілдерді үйрендіңіз? Процестің маңызды тұстары.</p>
-                <textarea rows="3" placeholder="Тәжірибеңізбен бөлісіңіз..."></textarea>
+                <span class="step-label">02. ПРОЦЕСС</span>
+                <h2>Шебердің қолтаңбасы</h2>
+                <p>Металды балқыту, соғу және бедерлеу. Қолданған технологияларыңыз туралы жазыңыз.</p>
+                <textarea rows="3" placeholder="Жұмыс барысы..."></textarea>
             </div>
             <div class="visual">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1000" alt="Metalwork Process">
+                <div class="img-3d" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="https://images.unsplash.com/photo-1531986346696-4bbdb408adac?q=80&w=1000&auto=format&fit=crop" alt="Blacksmith">
                 </div>
             </div>
         </section>
 
         <section class="section-card">
             <div class="content">
-                <span class="step-label">03. ДАЙЫН БҰЙЫМ</span>
-                <h2>Нәтиже мен жетістік</h2>
-                <p>Бұл жұмыстан алған ең үлкен сабағыңыз не болды? Нәтиже күткендегідей ме?</p>
-                <textarea rows="3" placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+                <span class="step-label">03. НӘТИЖЕ</span>
+                <h2>Биік белес</h2>
+                <p>Жеңіс пен жетістік - қажырлы еңбектің жемісі. Сіздің туындыңыз дайын!</p>
+                <textarea rows="3" placeholder="Қорытынды ой..."></textarea>
             </div>
             <div class="visual">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?auto=format&fit=crop&q=80&w=1000" alt="Achievement Medal">
+                <div class="img-3d" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop" alt="Award">
                 </div>
             </div>
         </section>
 
-        <section class="feedback-area">
-            <h2 style="font-family: 'Georgia', serif; font-style: italic;">Бүгінгі сабақ қалай өтті?</h2>
+        <div style="text-align:center; margin-bottom: 100px;">
+            <h2>Бүгінгі сабақ қалай өтті?</h2>
             <div class="emoji-container">
-                <div class="emoji-item" onclick="selectEmoji(this)">
+                <div class="emoji-item" onclick="toggleActive(this)">
                     <span class="emoji-icon">🤩</span>
                     <span class="emoji-text">Керемет</span>
                 </div>
-                <div class="emoji-item" onclick="selectEmoji(this)">
+                <div class="emoji-item" onclick="toggleActive(this)">
                     <span class="emoji-icon">😊</span>
                     <span class="emoji-text">Жақсы</span>
                 </div>
-                <div class="emoji-item" onclick="selectEmoji(this)">
+                <div class="emoji-item" onclick="toggleActive(this)">
                     <span class="emoji-icon">🤔</span>
                     <span class="emoji-text">Орташа</span>
                 </div>
-                <div class="emoji-item" onclick="selectEmoji(this)">
+                <div class="emoji-item" onclick="toggleActive(this)">
                     <span class="emoji-icon">🤯</span>
                     <span class="emoji-text">Қиын</span>
                 </div>
             </div>
 
-            <div class="btns">
+            <div class="btn-group">
                 <button class="btn btn-ai">✨ AI РЕПОРТАЖ ЖАСАУ</button>
                 <button class="btn btn-save">НӘТИЖЕНІ САҚТАУ</button>
             </div>
-        </section>
+        </div>
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    
     <script>
-        // Смайликті таңдау функциясы
-        function selectEmoji(element) {
-            // Барлық смайликтерден 'selected' класын алып тастау
-            document.querySelectorAll('.emoji-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-            // Басылған смайликке класс қосу
-            element.classList.add('selected');
+        // Смайликті таңдау
+        function toggleActive(el) {
+            document.querySelectorAll('.emoji-item').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
         }
+        
+        // 3D эффектісін инициализациялау (библиотека арқылы)
+        VanillaTilt.init(document.querySelectorAll(".img-3d"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+        });
     </script>
-
 </body>
 </html>
