@@ -9,7 +9,7 @@
 body{
     margin:0;
     font-family:Segoe UI, sans-serif;
-    background:linear-gradient(135deg,#ff4da6,#ff99cc);
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
 }
 
@@ -24,12 +24,12 @@ nav a{
     color:white;
     margin:0 15px;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:600;
 }
 
 section{
     display:none;
-    padding:50px 10%;
+    padding:60px 10%;
 }
 
 .active{
@@ -38,12 +38,12 @@ section{
 
 h1{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:40px;
 }
 
 .flex{
     display:flex;
-    gap:40px;
+    gap:50px;
     align-items:center;
     flex-wrap:wrap;
 }
@@ -56,34 +56,49 @@ h1{
 textarea{
     width:100%;
     height:150px;
+    border-radius:15px;
+    border:none;
+    padding:15px;
+    font-size:14px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 30px;
     border:none;
     border-radius:15px;
-    padding:15px;
-    margin-top:15px;
-    font-size:14px;
+    background:#00c6ff;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.card-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:25px;
+    border-radius:20px;
+    width:160px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card:hover{
+    background:#00c6ff;
+    transform:scale(1.1);
 }
 
 img{
     width:100%;
     max-width:350px;
     border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-button{
-    margin-top:30px;
-    padding:15px 40px;
-    border:none;
-    border-radius:20px;
-    font-size:16px;
-    cursor:pointer;
-    background:white;
-    color:#ff1493;
-    font-weight:bold;
-}
-
-.container{
-    text-align:center;
 }
 </style>
 
@@ -92,65 +107,87 @@ function showSection(id){
     document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
+
+function saveComment(id){
+    let text = document.getElementById(id).value;
+    localStorage.setItem(id, text);
+    alert("Сақталды ✅");
+}
+
+function loadComments(){
+    ["idea","resultText"].forEach(id=>{
+        if(localStorage.getItem(id)){
+            document.getElementById(id).value = localStorage.getItem(id);
+        }
+    });
+}
+
+window.onload = loadComments;
 </script>
 
 </head>
 <body>
 
 <header>
-💎 ЗергерПортал ✨ AI
+💎 ЗергерПортал ✨ AI  
 <br>
 <nav>
-<a href="#" onclick="showSection('home')">Басты бет</a>
-<a href="#" onclick="showSection('sketch')">Эскиз</a>
-<a href="#" onclick="showSection('result')">Нәтиже</a>
+<a href="#" onclick="showSection('home')">🏠 Басты бет</a>
+<a href="#" onclick="showSection('sketch')">🎨 Эскиз</a>
+<a href="#" onclick="showSection('result')">🏆 Нәтиже</a>
 </nav>
 </header>
 
 <!-- HOME -->
 <section id="home" class="active">
-<div class="container">
-<h1>Бүгінгі сабақ қалай өтті?</h1>
-<p>Өз әсеріңізді бөлісіңіз 💗</p>
+<h1>Бүгінгі сабақ қалай өтті? 😊</h1>
+
+<div class="card-container">
+<div class="card">🤩<br>КЕРЕМЕТ</div>
+<div class="card">🙂<br>ЖАҚСЫ</div>
+<div class="card">😐<br>ОРТАША</div>
+<div class="card">😵<br>ҚИЫН</div>
 </div>
 </section>
 
 <!-- SKETCH -->
 <section id="sketch">
-<h1>01. Шабыт көзі мен композиция</h1>
+<h1>01. Шабыт көзі мен композиция 🎨</h1>
 
 <div class="flex">
 <div class="box">
 <p>
-Бұйымның алғашқы идеясы ұлттық ою-өрнек пен заманауи стильді үйлестіруден алынды.
-Композиция симметрияға негізделді.
+Идея ұлттық ою-өрнек пен заманауи стильдің үйлесімінен алынды.
+Композиция симметрия мен пропорцияға негізделді.
 </p>
 
-<textarea placeholder="Өз пікіріңізді жазыңыз..."></textarea>
+<textarea id="idea" placeholder="Өз пікіріңізді жазыңыз..."></textarea>
+<button onclick="saveComment('idea')">💾 Сақтау</button>
 </div>
 
 <div class="box">
-<img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png">
+<img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd">
 </div>
 </div>
 </section>
 
 <!-- RESULT -->
 <section id="result">
-<h1>03. Нәтиже мен жетістік</h1>
+<h1>03. Нәтиже мен жетістік 🏆</h1>
 
 <div class="flex">
 <div class="box">
 <p>
 Дайын бұйым эскизге сәйкес жасалды.
-Пропорция және эстетика сақталды.
+Эстетика және сапа талаптары сақталды.
 </p>
 
-<textarea placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+<textarea id="resultText" placeholder="Жетістігіңізді жазыңыз..."></textarea>
+<button onclick="saveComment('resultText')">💾 Сақтау</button>
 </div>
 
 <div class="box">
-<img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+<img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401">
 </div>
 </div>
 </section>
