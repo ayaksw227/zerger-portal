@@ -9,9 +9,10 @@
 
 <style>
 :root{
---bg:#0b0b15;
---card:#151527;
+--bg:#0e0e18;
+--card:#18182b;
 --accent:#7b6cff;
+--gold:#d4af37;
 --text:#ffffff;
 }
 
@@ -23,7 +24,7 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:radial-gradient(circle at 50% -20%, #1d1d3a 0%, #0b0b15 60%);
+background:radial-gradient(circle at 50% -20%, #1d1d3a 0%, #0e0e18 60%);
 color:var(--text);
 padding:60px 20px;
 }
@@ -72,13 +73,12 @@ margin-bottom:25px;
 textarea{
 width:100%;
 height:130px;
-background:#0f0f1c;
+background:#111122;
 border:1px solid rgba(255,255,255,0.1);
 border-radius:18px;
 padding:18px;
 color:white;
 resize:none;
-font-size:15px;
 }
 
 .visual{
@@ -86,12 +86,82 @@ flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
+height:260px;
 }
 
-.visual img{
-width:260px;
-border-radius:20px;
-box-shadow:0 25px 60px rgba(0,0,0,0.8);
+/* RING ROTATION */
+.ring{
+width:200px;
+height:200px;
+border-radius:50%;
+border:35px solid var(--gold);
+animation:spin 8s linear infinite;
+box-shadow:0 30px 70px rgba(0,0,0,0.9);
+}
+
+/* BLACKSMITH ANIMATION */
+.hammer-box{
+width:180px;
+height:180px;
+position:relative;
+}
+
+.hammer{
+width:80px;
+height:20px;
+background:#999;
+position:absolute;
+top:20px;
+left:50px;
+transform-origin:right center;
+animation:hammer 1s infinite ease-in-out;
+}
+
+.anvil{
+width:120px;
+height:40px;
+background:#444;
+position:absolute;
+bottom:40px;
+left:30px;
+border-radius:10px;
+}
+
+@keyframes hammer{
+0%{transform:rotate(0deg);}
+50%{transform:rotate(-60deg);}
+100%{transform:rotate(0deg);}
+}
+
+/* MEDAL RAISE */
+.medal{
+width:180px;
+height:180px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #ffd700, #d4af37 60%, #8b7500);
+position:relative;
+animation:raise 3s infinite ease-in-out;
+box-shadow:0 40px 80px rgba(0,0,0,0.8);
+}
+
+.medal::after{
+content:"★";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:60px;
+color:white;
+}
+
+@keyframes raise{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-25px);}
+}
+
+@keyframes spin{
+from{transform:rotateY(0deg);}
+to{transform:rotateY(360deg);}
 }
 
 /* FEEDBACK */
@@ -136,18 +206,6 @@ background:var(--accent);
 box-shadow:0 0 35px var(--accent);
 }
 
-.finish-btn{
-background:linear-gradient(90deg,var(--accent),#9a8dff);
-padding:22px 90px;
-border-radius:20px;
-border:none;
-color:white;
-font-weight:800;
-font-size:18px;
-cursor:pointer;
-margin-top:20px;
-}
-
 @media(max-width:900px){
 .card{
 flex-direction:column;
@@ -160,43 +218,42 @@ text-align:center;
 
 <div class="container">
 
-<!-- 1 -->
 <div class="card">
 <div class="content">
 <span class="tag">01. Эскиз және идея</span>
-<h2>Ұлттық әшекей дизайны</h2>
-<textarea placeholder="Бұйым идеясы мен ою-өрнек мағынасын жазыңыз..."></textarea>
+<h2>Ұлттық әшекей</h2>
+<textarea placeholder="Идеяңызды жазыңыз..."></textarea>
 </div>
 <div class="visual">
-<img src="https://media.tenor.com/2roX3uxz_68AAAAC/spinning-ring.gif" alt="Айналатын әшекей">
+<div class="ring"></div>
 </div>
 </div>
 
-<!-- 2 -->
 <div class="card" style="flex-direction:row-reverse;">
 <div class="content">
-<span class="tag">02. Шеберлік кезеңі</span>
-<h2>Металл өңдеу процесі</h2>
-<textarea placeholder="Металды соғу және өңдеу процесін сипаттаңыз..."></textarea>
+<span class="tag">02. Металл өңдеу</span>
+<h2>Шебер жұмысы</h2>
+<textarea placeholder="Процесті сипаттаңыз..."></textarea>
 </div>
 <div class="visual">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Blacksmith_and_Striker_Animation_Loop.gif" alt="Металл соғу">
+<div class="hammer-box">
+<div class="hammer"></div>
+<div class="anvil"></div>
+</div>
 </div>
 </div>
 
-<!-- 3 -->
 <div class="card">
 <div class="content">
-<span class="tag">03. Нәтиже мен жетістік</span>
-<h2>Жеңіс сәті</h2>
-<textarea placeholder="Сабақ нәтижесі туралы жазыңыз..."></textarea>
+<span class="tag">03. Жеңіс</span>
+<h2>Медаль табыстау</h2>
+<textarea placeholder="Нәтиже туралы..."></textarea>
 </div>
 <div class="visual">
-<img src="https://media.tenor.com/4RZ7qKQ0R2wAAAAC/gold-medal.gif" alt="Медаль көтеру">
+<div class="medal"></div>
 </div>
 </div>
 
-<!-- 4 -->
 <div class="feedback">
 <h2>Бүгінгі сабақ қалай өтті?</h2>
 <div class="emoji-wrap">
@@ -205,7 +262,6 @@ text-align:center;
 <button class="emoji-btn" onclick="setEmoji(this)">😐</button>
 <button class="emoji-btn" onclick="setEmoji(this)">😵</button>
 </div>
-<button class="finish-btn">Сабақты аяқтау</button>
 </div>
 
 </div>
