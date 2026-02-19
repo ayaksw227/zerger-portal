@@ -3,219 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zerger Portal 3D</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<title>ЗергерПортал AI</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
-
 body{
-  background:linear-gradient(135deg,#0f1025,#1a1c4a);
-  color:white;
+margin:0;
+background:#0e0e18;
+color:white;
+font-family:Arial;
 }
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 60px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px;
 }
 
-.logo{
-  font-weight:700;
-  font-size:20px;
-  color:#ffd700;
-}
-
-nav a{
-  margin-left:25px;
-  text-decoration:none;
-  color:white;
-  transition:0.3s;
-}
-
-nav a:hover{
-  color:#ffd700;
-}
-
-section{
-  padding:80px 10%;
-  text-align:center;
-}
-
-.section-title{
-  font-size:32px;
-  margin-bottom:20px;
+.card{
+background:#18182b;
+border-radius:20px;
+padding:40px;
+margin-bottom:40px;
+display:flex;
+gap:40px;
+align-items:center;
 }
 
 textarea{
-  width:100%;
-  max-width:600px;
-  height:120px;
-  padding:15px;
-  border-radius:15px;
-  border:none;
-  margin-top:20px;
+width:100%;
+height:120px;
+background:#111;
+border:1px solid #444;
+border-radius:10px;
+color:white;
+padding:10px;
 }
 
-.models-container{
-  display:flex;
-  justify-content:center;
-  gap:60px;
-  flex-wrap:wrap;
-  margin-top:50px;
+.canvas-box{
+width:400px;
+height:300px;
 }
 
-model-viewer{
-  background:rgba(255,255,255,0.05);
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.4);
-}
-
-.dark-section{
-  margin-top:80px;
-}
-
-.feedback-title{
-  font-size:30px;
-  margin-bottom:30px;
-}
-
-.emoji-container{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-}
-
-.emoji-card{
-  background:rgba(255,255,255,0.08);
-  padding:25px;
-  border-radius:20px;
-  width:130px;
-  cursor:pointer;
-  transition:0.3s;
-  border:2px solid transparent;
+.feedback{
+text-align:center;
+padding:40px;
+background:#1c1c34;
+border-radius:20px;
 }
 
 .emoji{
-  font-size:40px;
-  display:block;
-  margin-bottom:10px;
-}
-
-.emoji-card:hover{
-  transform:translateY(-5px);
-  background:rgba(255,255,255,0.15);
-}
-
-.selected{
-  border:2px solid #ffd700;
-  transform:scale(1.1);
-  background:rgba(255,215,0,0.2);
+font-size:40px;
+cursor:pointer;
+margin:10px;
 }
 
 button{
-  margin-top:30px;
-  padding:12px 30px;
-  border-radius:30px;
-  border:none;
-  font-weight:600;
-  cursor:pointer;
-  background:linear-gradient(90deg,#ffd700,#ffb300);
+padding:10px 20px;
+margin-top:20px;
+cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
-<header>
-  <div class="logo">💎 Zerger 3D</div>
-  <nav>
-    <a href="#idea">Идея</a>
-    <a href="#models">3D Модели</a>
-    <a href="#feedback">Кері байланыс</a>
-  </nav>
-</header>
+<div class="container">
 
-<section id="idea">
-  <div class="section-title">Идея и эскиз</div>
-  <textarea placeholder="Опиши свою идею украшения..."></textarea>
-</section>
+<!-- 1 -->
+<div class="card">
+<div style="flex:1">
+<h2>Ұлттық сақина</h2>
+<textarea></textarea>
+</div>
+<div class="canvas-box">
+<canvas id="canvas1"></canvas>
+</div>
+</div>
 
-<section id="models">
-  <div class="section-title">3D Украшения</div>
+<!-- 2 -->
+<div class="card">
+<div style="flex:1">
+<h2>Металл өңдеу</h2>
+<textarea></textarea>
+</div>
+<div class="canvas-box">
+<canvas id="canvas2"></canvas>
+</div>
+</div>
 
-  <div class="models-container">
+<!-- 3 -->
+<div class="card">
+<div style="flex:1">
+<h2>Медаль</h2>
+<textarea></textarea>
+</div>
+<div class="canvas-box">
+<canvas id="canvas3"></canvas>
+</div>
+</div>
 
-    <model-viewer 
-      src="ring.glb"
-      auto-rotate
-      camera-controls
-      shadow-intensity="1"
-      exposure="1.2"
-      style="width:320px;height:320px;">
-    </model-viewer>
+</div>
 
-    <model-viewer 
-      src="bolgarka.glb"
-      auto-rotate
-      camera-controls
-      shadow-intensity="1"
-      exposure="1.2"
-      style="width:320px;height:320px;">
-    </model-viewer>
-
-  </div>
-</section>
-
-<section id="feedback" class="dark-section">
-  <div class="feedback-title">Сабақ қалай өтті?</div>
-
-  <div class="emoji-container">
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😍</span>
-      Керемет
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😊</span>
-      Жақсы
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">🤔</span>
-      Орташа
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😩</span>
-      Қиын
-    </div>
-  </div>
-
-  <button>Сақтау</button>
-</section>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-function selectEmoji(element){
-  document.querySelectorAll('.emoji-card').forEach(card=>{
-    card.classList.remove('selected');
-  });
-  element.classList.add('selected');
+
+/* ===== MODEL LOADER ===== */
+function loadModel(canvasId, modelPath){
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById(canvasId), alpha:true});
+renderer.setSize(400,300);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(2,2,2);
+scene.add(light);
+
+const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambient);
+
+const loader = new THREE.GLTFLoader();
+let model;
+
+loader.load(modelPath, function(gltf){
+model = gltf.scene;
+scene.add(model);
+model.scale.set(1.5,1.5,1.5);
+});
+
+camera.position.z = 5;
+
+function animate(){
+requestAnimationFrame(animate);
+if(model) model.rotation.y += 0.01;
+renderer.render(scene,camera);
 }
+animate();
+}
+
+/* ===== MEDAL (BUILT-IN 3D) ===== */
+function createMedal(canvasId){
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById(canvasId), alpha:true});
+renderer.setSize(400,300);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(3,3,3);
+scene.add(light);
+
+const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambient);
+
+/* Медаль шеңбер */
+const geometry = new THREE.CylinderGeometry(2,2,0.5,64);
+const material = new THREE.MeshStandardMaterial({
+color:0xd4af37,
+metalness:1,
+roughness:0.3
+});
+const medal = new THREE.Mesh(geometry, material);
+scene.add(medal);
+
+/* Жұлдыз */
+const starGeo = new THREE.TorusGeometry(0.8,0.2,16,100);
+const starMat = new THREE.MeshStandardMaterial({color:0xffffff});
+const star = new THREE.Mesh(starGeo, starMat);
+star.rotation.x = Math.PI/2;
+scene.add(star);
+
+camera.position.z = 6;
+
+/* Медаль АЙНАЛМАЙДЫ */
+function animate(){
+requestAnimationFrame(animate);
+renderer.render(scene,camera);
+}
+animate();
+}
+
+/* ===== LOAD ===== */
+loadModel("canvas1","models/ring.glb");
+loadModel("canvas2","models/bolgarka.glb");
+createMedal("canvas3");
+
 </script>
 
 </body>
