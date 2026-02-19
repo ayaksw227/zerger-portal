@@ -3,239 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЗергерПортал AI</title>
+<title>Zerger Portal 3D</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#f3f6ff,#e9ecff);
-    color:#1b1f3b;
+  background:linear-gradient(135deg,#0f1025,#1a1c4a);
+  color:white;
 }
 
 header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 60px;
-    background:white;
-    box-shadow:0 5px 20px rgba(0,0,0,0.05);
-    position:sticky;
-    top:0;
-    z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
 }
 
 .logo{
-    font-weight:700;
-    font-size:20px;
-    color:#4b4bff;
+  font-weight:700;
+  font-size:20px;
+  color:#ffd700;
 }
 
 nav a{
-    margin-left:25px;
-    text-decoration:none;
-    color:#444;
-    font-weight:500;
-    transition:0.3s;
+  margin-left:25px;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
 }
 
 nav a:hover{
-    color:#4b4bff;
+  color:#ffd700;
 }
 
 section{
-    padding:80px 10%;
+  padding:80px 10%;
+  text-align:center;
 }
 
 .section-title{
-    font-size:32px;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-.section-sub{
-    margin-bottom:30px;
-    color:#555;
-}
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.07);
+  font-size:32px;
+  margin-bottom:20px;
 }
 
 textarea{
-    width:100%;
-    height:120px;
-    padding:15px;
-    border-radius:15px;
-    border:1px solid #ddd;
-    resize:none;
-    outline:none;
-    transition:0.3s;
+  width:100%;
+  max-width:600px;
+  height:120px;
+  padding:15px;
+  border-radius:15px;
+  border:none;
+  margin-top:20px;
 }
 
-textarea:focus{
-    border:1px solid #4b4bff;
-    box-shadow:0 0 10px rgba(75,75,255,0.2);
+.models-container{
+  display:flex;
+  justify-content:center;
+  gap:60px;
+  flex-wrap:wrap;
+  margin-top:50px;
+}
+
+model-viewer{
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
 .dark-section{
-    background:linear-gradient(135deg,#1d1f4f,#2c2f8f);
-    color:white;
-    text-align:center;
+  margin-top:80px;
 }
 
 .feedback-title{
-    font-size:34px;
-    margin-bottom:40px;
+  font-size:30px;
+  margin-bottom:30px;
 }
 
 .emoji-container{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-bottom:40px;
-    flex-wrap:wrap;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
 }
 
 .emoji-card{
-    background:rgba(255,255,255,0.08);
-    padding:25px;
-    border-radius:20px;
-    width:130px;
-    cursor:pointer;
-    transition:0.3s;
-    border:2px solid transparent;
-}
-
-.emoji-card:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+  width:130px;
+  cursor:pointer;
+  transition:0.3s;
+  border:2px solid transparent;
 }
 
 .emoji{
-    font-size:40px;
-    display:block;
-    margin-bottom:10px;
+  font-size:40px;
+  display:block;
+  margin-bottom:10px;
+}
+
+.emoji-card:hover{
+  transform:translateY(-5px);
+  background:rgba(255,255,255,0.15);
 }
 
 .selected{
-    border:2px solid #ffd700;
-    background:rgba(255,255,255,0.2);
-    transform:scale(1.1);
+  border:2px solid #ffd700;
+  transform:scale(1.1);
+  background:rgba(255,215,0,0.2);
 }
 
-.button{
-    padding:15px 40px;
-    border-radius:30px;
-    border:none;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    margin:10px;
-    transition:0.3s;
-}
-
-.primary{
-    background:linear-gradient(90deg,#6a6aff,#4b4bff);
-    color:white;
-}
-
-.primary:hover{
-    transform:scale(1.05);
-    box-shadow:0 10px 25px rgba(75,75,255,0.4);
-}
-
-.secondary{
-    background:white;
-    color:#333;
-}
-
-.secondary:hover{
-    background:#eee;
+button{
+  margin-top:30px;
+  padding:12px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(90deg,#ffd700,#ffb300);
 }
 </style>
 </head>
+
 <body>
 
 <header>
-    <div class="logo">💎 ЗергерПортал AI</div>
-    <nav>
-        <a href="#idea">Шабыт</a>
-        <a href="#process">Процесс</a>
-        <a href="#result">Нәтиже</a>
-        <a href="#feedback">Кері байланыс</a>
-    </nav>
+  <div class="logo">💎 Zerger 3D</div>
+  <nav>
+    <a href="#idea">Идея</a>
+    <a href="#models">3D Модели</a>
+    <a href="#feedback">Кері байланыс</a>
+  </nav>
 </header>
 
 <section id="idea">
-    <div class="section-title">01. Эскиз және идея</div>
-    <div class="section-sub">Бұйымның алғашқы бейнесі қалай пайда болды?</div>
-    <div class="card">
-        <textarea placeholder="Өз ойларыңызды осында жазыңыз..."></textarea>
-    </div>
+  <div class="section-title">Идея и эскиз</div>
+  <textarea placeholder="Опиши свою идею украшения..."></textarea>
 </section>
 
-<section id="process">
-    <div class="section-title">02. Металмен жұмыс технологиясы</div>
-    <div class="section-sub">Қандай тәсілдерді үйрендіңіз?</div>
-    <div class="card">
-        <textarea placeholder="Тәжірибеңізбен бөлісіңіз..."></textarea>
-    </div>
-</section>
+<section id="models">
+  <div class="section-title">3D Украшения</div>
 
-<section id="result">
-    <div class="section-title">03. Нәтиже мен жетістік</div>
-    <div class="section-sub">Жұмыстан алған ең үлкен сабағыңыз?</div>
-    <div class="card">
-        <textarea placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
-    </div>
+  <div class="models-container">
+
+    <model-viewer 
+      src="ring.glb"
+      auto-rotate
+      camera-controls
+      shadow-intensity="1"
+      exposure="1.2"
+      style="width:320px;height:320px;">
+    </model-viewer>
+
+    <model-viewer 
+      src="bolgarka.glb"
+      auto-rotate
+      camera-controls
+      shadow-intensity="1"
+      exposure="1.2"
+      style="width:320px;height:320px;">
+    </model-viewer>
+
+  </div>
 </section>
 
 <section id="feedback" class="dark-section">
-    <div class="feedback-title">Бүгінгі сабақ қалай өтті?</div>
+  <div class="feedback-title">Сабақ қалай өтті?</div>
 
-    <div class="emoji-container">
-        <div class="emoji-card" onclick="selectEmoji(this)">
-            <span class="emoji">😍</span>
-            Керемет
-        </div>
-
-        <div class="emoji-card" onclick="selectEmoji(this)">
-            <span class="emoji">😊</span>
-            Жақсы
-        </div>
-
-        <div class="emoji-card" onclick="selectEmoji(this)">
-            <span class="emoji">🤔</span>
-            Орташа
-        </div>
-
-        <div class="emoji-card" onclick="selectEmoji(this)">
-            <span class="emoji">😩</span>
-            Қиын
-        </div>
+  <div class="emoji-container">
+    <div class="emoji-card" onclick="selectEmoji(this)">
+      <span class="emoji">😍</span>
+      Керемет
     </div>
 
-    <button class="button primary">✨ AI репортаж жасау</button>
-    <button class="button secondary">Нәтижені сақтау</button>
+    <div class="emoji-card" onclick="selectEmoji(this)">
+      <span class="emoji">😊</span>
+      Жақсы
+    </div>
+
+    <div class="emoji-card" onclick="selectEmoji(this)">
+      <span class="emoji">🤔</span>
+      Орташа
+    </div>
+
+    <div class="emoji-card" onclick="selectEmoji(this)">
+      <span class="emoji">😩</span>
+      Қиын
+    </div>
+  </div>
+
+  <button>Сақтау</button>
 </section>
 
 <script>
 function selectEmoji(element){
-    document.querySelectorAll('.emoji-card').forEach(card=>{
-        card.classList.remove('selected');
-    });
-    element.classList.add('selected');
+  document.querySelectorAll('.emoji-card').forEach(card=>{
+    card.classList.remove('selected');
+  });
+  element.classList.add('selected');
 }
 </script>
 
