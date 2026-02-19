@@ -86,16 +86,22 @@ model-viewer:hover{
   transform:scale(1.03);
 }
 
-/* ВАУ ФОН ДЛЯ RING */
+/* RING */
 .ring-bg{
   background:linear-gradient(135deg,#c7d2fe,#a5b4fc);
   box-shadow:0 30px 60px rgba(79,70,229,0.3);
 }
 
-/* ВАУ ФОН ДЛЯ BOLGARKA */
+/* BOLGARKA */
 .bolgarka-bg{
   background:linear-gradient(135deg,#cbd5e1,#94a3b8);
   box-shadow:0 30px 60px rgba(30,41,59,0.3);
+}
+
+/* MEDAL */
+.medal-bg{
+  background:linear-gradient(135deg,#fde68a,#fbbf24);
+  box-shadow:0 30px 60px rgba(217,119,6,0.4);
 }
 
 /* FEEDBACK */
@@ -157,6 +163,7 @@ model-viewer:hover{
   <nav>
     <a href="#idea">Шабыт</a>
     <a href="#process">Процесс</a>
+    <a href="#result">Нәтиже</a>
     <a href="#feedback">Кері байланыс</a>
   </nav>
 </header>
@@ -164,7 +171,6 @@ model-viewer:hover{
 <!-- 1 БӨЛІМ -->
 <section id="idea">
   <div class="grid">
-
     <div>
       <h2>01. Шабыт көзі мен композиция</h2>
       <p>Бұйымның алғашқы бейнесі қалай пайда болды? 
@@ -180,14 +186,12 @@ model-viewer:hover{
       shadow-intensity="1"
       exposure="1.2">
     </model-viewer>
-
   </div>
 </section>
 
 <!-- 2 БӨЛІМ -->
 <section id="process">
   <div class="grid">
-
     <div>
       <h2>02. Металмен жұмыс технологиясы</h2>
       <p>Кесу, соғу, дәнекерлеу немесе бедерлеу кезінде қандай тәсілдерді үйрендіңіз?</p>
@@ -202,7 +206,27 @@ model-viewer:hover{
       shadow-intensity="1"
       exposure="1.2">
     </model-viewer>
+  </div>
+</section>
 
+<!-- 3 БӨЛІМ -->
+<section id="result">
+  <div class="grid">
+    <div>
+      <h2>03. Нәтиже мен жетістік</h2>
+      <p>Дайын өнім эскизге сәйкес келді ме? 
+      Нәтиже сізді қуантты ма?</p>
+      <textarea placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+    </div>
+
+    <model-viewer 
+      class="medal-bg"
+      src="medal.glb"
+      auto-rotate
+      camera-controls
+      shadow-intensity="1"
+      exposure="1.2">
+    </model-viewer>
   </div>
 </section>
 
