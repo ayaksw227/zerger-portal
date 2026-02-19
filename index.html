@@ -5,309 +5,237 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЗергерПортал AI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#0e0e18;
---card:#18182b;
---accent:#7b6cff;
---gold:#d4af37;
---text:#ffffff;
-}
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
 }
 
 body{
-background:radial-gradient(circle at 50% -20%, #1d1d3a 0%, #0e0e18 60%);
-color:var(--text);
-padding:60px 20px;
+    background:linear-gradient(135deg,#f3f6ff,#e9ecff);
+    color:#1b1f3b;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-weight:700;
+    font-size:20px;
+    color:#4b4bff;
+}
+
+nav a{
+    margin-left:25px;
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#4b4bff;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.section-sub{
+    margin-bottom:30px;
+    color:#555;
 }
 
 .card{
-background:var(--card);
-border-radius:28px;
-padding:60px;
-margin-bottom:50px;
-display:flex;
-align-items:center;
-gap:60px;
-border:1px solid rgba(123,108,255,0.3);
-box-shadow:0 0 40px rgba(0,0,0,0.6);
-transition:.4s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 60px rgba(123,108,255,0.4);
-}
-
-.content{
-flex:1;
-}
-
-.tag{
-color:var(--accent);
-font-weight:800;
-font-size:13px;
-letter-spacing:2px;
-margin-bottom:15px;
-display:block;
-}
-
-h2{
-font-size:34px;
-margin-bottom:25px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.07);
 }
 
 textarea{
-width:100%;
-height:130px;
-background:#111122;
-border:1px solid rgba(255,255,255,0.1);
-border-radius:18px;
-padding:18px;
-color:white;
-resize:none;
+    width:100%;
+    height:120px;
+    padding:15px;
+    border-radius:15px;
+    border:1px solid #ddd;
+    resize:none;
+    outline:none;
+    transition:0.3s;
 }
 
-.visual{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-height:260px;
+textarea:focus{
+    border:1px solid #4b4bff;
+    box-shadow:0 0 10px rgba(75,75,255,0.2);
 }
 
-/* ---------- ҰЛТТЫҚ САҚИНА ---------- */
-
-.ring{
-position:relative;
-width:220px;
-height:220px;
-border-radius:50%;
-background:
-radial-gradient(circle at 30% 30%, #ffd700, #d4af37 50%, #8b7500 90%);
-box-shadow:
-inset -20px -30px 60px rgba(0,0,0,.7),
-inset 15px 15px 40px rgba(255,255,255,.3),
-0 40px 90px rgba(0,0,0,.9);
-animation:spin 10s linear infinite;
+.dark-section{
+    background:linear-gradient(135deg,#1d1f4f,#2c2f8f);
+    color:white;
+    text-align:center;
 }
 
-.ring::before{
-content:"";
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:120px;
-height:120px;
-border-radius:50%;
-background:var(--bg);
-box-shadow:inset 0 0 40px rgba(0,0,0,.8);
+.feedback-title{
+    font-size:34px;
+    margin-bottom:40px;
 }
 
-.ring::after{
-content:"✦";
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:70px;
-color:white;
-opacity:.9;
+.emoji-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
 }
 
-/* ---------- МЕТАЛЛ СОҒУ ---------- */
-
-.hammer-box{
-width:180px;
-height:180px;
-position:relative;
+.emoji-card{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:20px;
+    width:130px;
+    cursor:pointer;
+    transition:0.3s;
+    border:2px solid transparent;
 }
 
-.hammer{
-width:80px;
-height:20px;
-background:#aaa;
-position:absolute;
-top:20px;
-left:50px;
-transform-origin:right center;
-animation:hammer 1s infinite ease-in-out;
-border-radius:4px;
+.emoji-card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.15);
 }
 
-.anvil{
-width:120px;
-height:40px;
-background:#444;
-position:absolute;
-bottom:40px;
-left:30px;
-border-radius:10px;
+.emoji{
+    font-size:40px;
+    display:block;
+    margin-bottom:10px;
 }
 
-/* ---------- МЕДАЛЬ ---------- */
-
-.medal{
-width:200px;
-height:200px;
-border-radius:50%;
-background:radial-gradient(circle at 30% 30%, #ffd700, #d4af37 60%, #8b7500);
-position:relative;
-animation:raise 3s infinite ease-in-out;
-box-shadow:
-inset -20px -30px 60px rgba(0,0,0,.7),
-0 50px 100px rgba(0,0,0,.8);
+.selected{
+    border:2px solid #ffd700;
+    background:rgba(255,255,255,0.2);
+    transform:scale(1.1);
 }
 
-.medal::after{
-content:"★";
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:70px;
-color:white;
+.button{
+    padding:15px 40px;
+    border-radius:30px;
+    border:none;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
 }
 
-/* ---------- АНИМАЦИЯ ---------- */
-
-@keyframes spin{
-from{transform:rotateY(0);}
-to{transform:rotateY(360deg);}
+.primary{
+    background:linear-gradient(90deg,#6a6aff,#4b4bff);
+    color:white;
 }
 
-@keyframes hammer{
-0%{transform:rotate(0deg);}
-50%{transform:rotate(-60deg);}
-100%{transform:rotate(0deg);}
+.primary:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(75,75,255,0.4);
 }
 
-@keyframes raise{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-25px);}
+.secondary{
+    background:white;
+    color:#333;
 }
 
-/* ---------- FEEDBACK ---------- */
-
-.feedback{
-background:linear-gradient(145deg,#1c1c34,#0e0e1c);
-border-radius:40px;
-padding:70px;
-text-align:center;
-border:1px solid rgba(123,108,255,0.4);
-}
-
-.emoji-wrap{
-display:flex;
-justify-content:center;
-gap:25px;
-margin:40px 0;
-}
-
-.emoji-btn{
-width:90px;
-height:90px;
-border-radius:24px;
-background:#141428;
-border:1px solid rgba(255,255,255,.1);
-font-size:36px;
-cursor:pointer;
-transition:.3s;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.emoji-btn:hover{
-transform:scale(1.15);
-border-color:var(--accent);
-box-shadow:0 0 25px var(--accent);
-}
-
-.emoji-btn.active{
-background:var(--accent);
-box-shadow:0 0 35px var(--accent);
-}
-
-@media(max-width:900px){
-.card{
-flex-direction:column;
-text-align:center;
-}
+.secondary:hover{
+    background:#eee;
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<header>
+    <div class="logo">💎 ЗергерПортал AI</div>
+    <nav>
+        <a href="#idea">Шабыт</a>
+        <a href="#process">Процесс</a>
+        <a href="#result">Нәтиже</a>
+        <a href="#feedback">Кері байланыс</a>
+    </nav>
+</header>
 
-<div class="card">
-<div class="content">
-<span class="tag">01. Эскиз және идея</span>
-<h2>Ұлттық әшекей</h2>
-<textarea placeholder="Идеяңызды жазыңыз..."></textarea>
-</div>
-<div class="visual">
-<div class="ring"></div>
-</div>
-</div>
+<section id="idea">
+    <div class="section-title">01. Эскиз және идея</div>
+    <div class="section-sub">Бұйымның алғашқы бейнесі қалай пайда болды?</div>
+    <div class="card">
+        <textarea placeholder="Өз ойларыңызды осында жазыңыз..."></textarea>
+    </div>
+</section>
 
-<div class="card" style="flex-direction:row-reverse;">
-<div class="content">
-<span class="tag">02. Металл өңдеу</span>
-<h2>Шебер жұмысы</h2>
-<textarea placeholder="Процесті сипаттаңыз..."></textarea>
-</div>
-<div class="visual">
-<div class="hammer-box">
-<div class="hammer"></div>
-<div class="anvil"></div>
-</div>
-</div>
-</div>
+<section id="process">
+    <div class="section-title">02. Металмен жұмыс технологиясы</div>
+    <div class="section-sub">Қандай тәсілдерді үйрендіңіз?</div>
+    <div class="card">
+        <textarea placeholder="Тәжірибеңізбен бөлісіңіз..."></textarea>
+    </div>
+</section>
 
-<div class="card">
-<div class="content">
-<span class="tag">03. Жеңіс</span>
-<h2>Медаль табыстау</h2>
-<textarea placeholder="Нәтиже туралы..."></textarea>
-</div>
-<div class="visual">
-<div class="medal"></div>
-</div>
-</div>
+<section id="result">
+    <div class="section-title">03. Нәтиже мен жетістік</div>
+    <div class="section-sub">Жұмыстан алған ең үлкен сабағыңыз?</div>
+    <div class="card">
+        <textarea placeholder="Өз жетістігіңізді сипаттаңыз..."></textarea>
+    </div>
+</section>
 
-<div class="feedback">
-<h2>Бүгінгі сабақ қалай өтті?</h2>
-<div class="emoji-wrap">
-<button class="emoji-btn" onclick="setEmoji(this)">😍</button>
-<button class="emoji-btn" onclick="setEmoji(this)">😊</button>
-<button class="emoji-btn" onclick="setEmoji(this)">😐</button>
-<button class="emoji-btn" onclick="setEmoji(this)">😵</button>
-</div>
-</div>
+<section id="feedback" class="dark-section">
+    <div class="feedback-title">Бүгінгі сабақ қалай өтті?</div>
 
-</div>
+    <div class="emoji-container">
+        <div class="emoji-card" onclick="selectEmoji(this)">
+            <span class="emoji">😍</span>
+            Керемет
+        </div>
+
+        <div class="emoji-card" onclick="selectEmoji(this)">
+            <span class="emoji">😊</span>
+            Жақсы
+        </div>
+
+        <div class="emoji-card" onclick="selectEmoji(this)">
+            <span class="emoji">🤔</span>
+            Орташа
+        </div>
+
+        <div class="emoji-card" onclick="selectEmoji(this)">
+            <span class="emoji">😩</span>
+            Қиын
+        </div>
+    </div>
+
+    <button class="button primary">✨ AI репортаж жасау</button>
+    <button class="button secondary">Нәтижені сақтау</button>
+</section>
 
 <script>
-function setEmoji(btn){
-document.querySelectorAll('.emoji-btn').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
+function selectEmoji(element){
+    document.querySelectorAll('.emoji-card').forEach(card=>{
+        card.classList.remove('selected');
+    });
+    element.classList.add('selected');
 }
 </script>
 
