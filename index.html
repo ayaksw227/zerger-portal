@@ -6,7 +6,6 @@
 <title>Zerger Portal AI</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
@@ -79,13 +78,11 @@ model-viewer{
   width:100%;
   height:380px;
   border-radius:20px;
-  background:white;
-  box-shadow:0 30px 60px rgba(0,0,0,0.1);
   transition:0.4s;
 }
 
 model-viewer:hover{
-  transform:scale(1.05);
+  transform:scale(1.03);
 }
 
 .dark-section{
@@ -181,78 +178,11 @@ button:hover{
       <textarea placeholder="Өз ойларыңызды осында жазыңыз..."></textarea>
     </div>
 
+    <!-- RING -->
     <model-viewer 
       src="ring.glb"
       auto-rotate
       camera-controls
       exposure="1.3"
-      shadow-intensity="1">
-    </model-viewer>
-
-  </div>
-</section>
-
-<!-- 2 СЕКЦИЯ -->
-<section id="process">
-  <div class="section-grid">
-
-    <div>
-      <div class="section-title">02. Металмен жұмыс технологиясы</div>
-      <div class="section-text">
-        Кесу, соғу, дәнекерлеу немесе бедерлеу кезінде қандай тәсілдерді үйрендіңіз?
-      </div>
-      <textarea placeholder="Тәжірибеңізбен бөлісіңіз..."></textarea>
-    </div>
-
-    <model-viewer 
-      src="bolgarka.glb"
-      auto-rotate
-      camera-controls
-      exposure="1.3"
-      shadow-intensity="1">
-    </model-viewer>
-
-  </div>
-</section>
-
-<!-- FEEDBACK -->
-<section id="feedback" class="dark-section">
-  <div class="feedback-title">Бүгінгі сабақ қалай өтті?</div>
-
-  <div class="emoji-container">
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😍</span>
-      Керемет
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😊</span>
-      Жақсы
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">🤔</span>
-      Орташа
-    </div>
-
-    <div class="emoji-card" onclick="selectEmoji(this)">
-      <span class="emoji">😩</span>
-      Қиын
-    </div>
-  </div>
-
-  <button>Нәтижені сақтау</button>
-</section>
-
-<script>
-function selectEmoji(element){
-  document.querySelectorAll('.emoji-card').forEach(card=>{
-    card.classList.remove('selected');
-  });
-  element.classList.add('selected');
-}
-</script>
-
-</body>
-</html>
-
+      shadow-intensity="1"
+      style="background:linear-gradient(135
